@@ -1,24 +1,52 @@
 RSpec.describe "before and after hooks" do
-  before(:example) do
-    p "before example"
-  end
-
   before(:context) do
-    p "before context"
+    p "OUTER Before context"
   end
 
-  after(:example) do
-    p "after example"
+  before(:example) do
+    p "OUTER Before example"
   end
 
-  after(:context) do
-    p "after context"
-  end
-
-  it "test for before and after" do
+  it "will pass" do
     expect(1 + 1).to eq(2)
   end
+
+  context "when it can pass" do
+    before(:context) do
+      p "INNER Before context"
+    end
+
+    before(:example) do
+      p "INNER Before example"
+    end
+
+    it "will pass too" do
+      expect(2 + 2).to eq(4)
+    end
+  end
 end
+
+# RSpec.describe "before and after hooks" do
+#   before(:example) do
+#     p "before example"
+#   end
+
+#   before(:context) do
+#     p "before context"
+#   end
+
+#   after(:example) do
+#     p "after example"
+#   end
+
+#   after(:context) do
+#     p "after context"
+#   end
+
+#   it "test for before and after" do
+#     expect(1 + 1).to eq(2)
+#   end
+# end
 
 # RSpec.describe "before and after hooks" do
 #   before(:example) do
