@@ -1,10 +1,11 @@
 RSpec.describe Hash do 
-  subject do 
+  subject(:jen) do 
     {a: 3, b: 4}
   end
 
   it 'should be empty' do
     expect(subject.length).to eq(2)
+    expect(jen.length).to eq(2)
   end
 end
 
